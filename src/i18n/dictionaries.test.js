@@ -24,7 +24,8 @@ describe('dictionnaires FR et EN', () => {
   it("n'ont aucun texte vide", () => {
     for (const value of [...leafValues(fr), ...leafValues(en)]) {
       expect(typeof value).toBe('string')
-      expect(value.trim()).not.toBe('')
+      // Pas de trim() : le séparateur des milliers en français est une espace.
+      expect(value).not.toBe('')
     }
   })
 })
