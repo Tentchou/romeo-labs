@@ -147,6 +147,17 @@ describe('correction depuis le récapitulatif', () => {
     expect(goBack(editStep(summary, 'deadline')).step).toBe(SUMMARY)
   })
 
+  it('garde « Retour » même en corrigeant la première question', () => {
+    const state = editStep(summary, 'projectType')
+    expect(canGoBack(state)).toBe(true)
+    expect(goBack(state).step).toBe(SUMMARY)
+  })
+
+  it('reprend la correction après un rechargement de la page', () => {
+    const saved = JSON.parse(JSON.stringify(editStep(summary, 'projectType')))
+    expect(restoreState(saved, context).editing).toBe(true)
+  })
+
   it('repasse par les besoins si le nouveau type de projet les a tous retirés', () => {
     const onlyShop = { ...summary, answers: { ...fullAnswers, needs: ['shop'] } }
     const state = goNext(setAnswer(editStep(onlyShop, 'projectType'), 'projectType', 'mobile'))

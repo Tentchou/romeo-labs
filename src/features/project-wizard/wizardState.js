@@ -105,8 +105,11 @@ export function goNext(state) {
   return { ...state, step: STEPS[index + 1] };
 }
 
+// Pas de retour possible depuis la première question (sauf pendant une correction,
+// pour revenir au récapitulatif) ni depuis « Merci ».
 export function canGoBack(state) {
-  return state.step !== QUESTION_STEPS[0] && state.step !== THANKS;
+  if (state.step === THANKS) return false;
+  return state.editing || state.step !== QUESTION_STEPS[0];
 }
 
 // Revient à l'écran précédent. Pendant une correction, revient au récapitulatif
@@ -118,7 +121,9 @@ export function goBack(state) {
     return { ...state, step: SUMMARY, editing: false };
   }
 
-  return { ...state, step: STEPS[STEPS.indexOf(state.step) - 1], editing: false };
+  const index = STEPS.indexOf(state.step);
+  if (index === 0) return state;
+  return { ...state, step: STEPS[index - 1], editing: false };
 }
 
 // Ouvre une question depuis le récapitulatif pour la corriger.
@@ -170,5 +175,8 @@ export function restoreState(saved, { defaultBudgetPosition, budgetSteps }) {
   const step = tooFar ? furthest : wanted;
   const sentBy = step === THANKS ? (saved.sentBy === "email" ? "email" : "whatsapp") : null;
 
-  return { step, answers, editing: false, sentBy };
+  // Une correction en cours (« Modifier ») reprend là où elle en était.
+  const editing = saved.editing === true && furthest === SUMMARY && QUESTION_STEPS.includes(step);
+
+  return { step, answers, editing, sentBy };
 }
