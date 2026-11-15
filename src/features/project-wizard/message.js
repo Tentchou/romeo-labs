@@ -9,15 +9,17 @@ function hasText(value) {
   return typeof value === "string" && value.trim() !== "";
 }
 
-// Construit le texte du message, dans la langue du dictionnaire reçu.
+// Met les réponses en mots, dans la langue du dictionnaire reçu.
 //
 // answers : les réponses du questionnaire (identifiants, pas de texte traduit)
 //   { projectType, audience, needs, stage, deadline, budgetPosition, budgetUnknown, name, city, message }
 // context : ce qu'il faut pour les mettre en mots
-//   { t: dictionnaire.wizard, brand, currency, budgetSteps }
+//   { t: dictionnaire.wizard, currency, budgetSteps }
 //
-// Une ligne sans réponse (ville ou message non remplis, par exemple) n'apparaît pas.
-export function buildMessage(answers, { t, brand, currency, budgetSteps }) {
+// Renvoie une liste de lignes { step, label, value } ; `step` est l'écran du
+// questionnaire où la réponse a été donnée. Une ligne sans réponse (ville ou
+// message non remplis, par exemple) n'apparaît pas.
+export function answerRows(answers, { t, currency, budgetSteps }) {
   const { options, message: labels } = t;
 
   const needs = (answers.needs ?? []).map((need) => options.needs[need]).join(", ");
@@ -28,19 +30,27 @@ export function buildMessage(answers, { t, brand, currency, budgetSteps }) {
       ? formatBudget(answers.budgetPosition, { steps: budgetSteps, currency, labels: t.budget })
       : "";
 
-  const lines = [
-    [labels.type, options.projectType[answers.projectType]],
-    [labels.audience, options.audience[answers.audience]],
-    [labels.needs, needs],
-    [labels.stage, options.stage[answers.stage]],
-    [labels.deadline, options.deadline[answers.deadline]],
-    [labels.budget, budget],
-    [labels.name, answers.name],
-    [labels.city, answers.city],
-    [labels.message, answers.message],
+  return [
+    ["projectType", labels.type, options.projectType[answers.projectType]],
+    ["audience", labels.audience, options.audience[answers.audience]],
+    ["needs", labels.needs, needs],
+    ["stage", labels.stage, options.stage[answers.stage]],
+    ["deadline", labels.deadline, options.deadline[answers.deadline]],
+    ["budget", labels.budget, budget],
+    ["contact", labels.name, answers.name],
+    ["contact", labels.city, answers.city],
+    ["contact", labels.message, answers.message],
   ]
-    .filter(([, value]) => hasText(value))
-    .map(([label, value]) => `- ${label}${labels.separator}${value.trim()}`);
+    .filter(([, , value]) => hasText(value))
+    .map(([step, label, value]) => ({ step, label, value: value.trim() }));
+}
+
+// Construit le texte du message envoyé à Romeo : une ligne par réponse.
+export function buildMessage(answers, { t, brand, currency, budgetSteps }) {
+  const labels = t.message;
+  const lines = answerRows(answers, { t, currency, budgetSteps }).map(
+    ({ label, value }) => `- ${label}${labels.separator}${value}`,
+  );
 
   return [fill(labels.greeting, { brand }), labels.intro, "", ...lines].join("\n");
 }

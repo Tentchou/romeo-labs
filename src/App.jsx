@@ -6,6 +6,7 @@ import { Hero } from './components/Hero.jsx'
 import { HowItWorks } from './components/HowItWorks.jsx'
 import { Section } from './components/Section.jsx'
 import { Services } from './components/Services.jsx'
+import { ProjectWizard } from './features/project-wizard/ProjectWizard.jsx'
 import { useT } from './i18n/LanguageProvider.jsx'
 
 export default function App() {
@@ -25,8 +26,9 @@ export default function App() {
         <Hero />
         <Services />
         <HowItWorks />
-        {/* Le questionnaire (phase 4) prendra place dans cette section. */}
-        <Section id="projet" title={t.project.title} intro={t.project.intro} />
+        <Section id="projet" title={t.project.title} intro={t.project.intro}>
+          <ProjectWizard />
+        </Section>
         <Channels />
         <Contact />
       </main>

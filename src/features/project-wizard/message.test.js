@@ -4,6 +4,7 @@ import { en } from '../../i18n/en.js'
 import { fr } from '../../i18n/fr.js'
 import { buildBudgetSteps } from './budget.js'
 import {
+  answerRows,
   buildEmailSubject,
   buildMessage,
   mailtoMessageLink,
@@ -80,6 +81,23 @@ describe('buildMessage', () => {
   it('écrit « Plus de 10 000 000 FCFA » pour la dernière position du budget', () => {
     const message = buildMessage({ ...answers, budgetPosition: budgetSteps.length }, inFrench)
     expect(message).toContain('- Budget : Plus de 10 000 000 FCFA')
+  })
+})
+
+describe('answerRows', () => {
+  it('relie chaque réponse à son écran du questionnaire', () => {
+    const rows = answerRows({ ...answers, city: '' }, inFrench)
+    expect(rows.map((row) => row.step)).toEqual([
+      'projectType',
+      'audience',
+      'needs',
+      'stage',
+      'deadline',
+      'budget',
+      'contact',
+      'contact',
+    ])
+    expect(rows[0]).toEqual({ step: 'projectType', label: 'Type', value: 'Application mobile' })
   })
 })
 

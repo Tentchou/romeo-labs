@@ -12,7 +12,7 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-10 border-b border-line bg-page">
-      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-3 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-2 sm:px-6">
         <a
           href="#top"
           aria-label={t.header.homeLabel}
@@ -25,6 +25,7 @@ export function Header() {
             icon={Globe}
             variant="secondary"
             size="compact"
+            className="max-sm:px-2"
             onClick={toggleLang}
             aria-label={t.header.langButtonLabel}
           >
@@ -34,6 +35,7 @@ export function Header() {
             icon={isDark ? Sun : Moon}
             variant="secondary"
             size="compact"
+            className="max-sm:px-2"
             onClick={toggleTheme}
             aria-label={isDark ? t.header.themeToLightLabel : t.header.themeToDarkLabel}
           >
