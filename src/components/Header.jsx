@@ -12,7 +12,7 @@ export function Header() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-10 border-b border-line bg-page">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between gap-2 px-3 sm:px-6">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-3 sm:px-6">
         <a
           href="#top"
           aria-label={t.header.homeLabel}

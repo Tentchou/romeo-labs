@@ -1,4 +1,11 @@
+import { Channels } from './components/Channels.jsx'
+import { Contact } from './components/Contact.jsx'
+import { Footer } from './components/Footer.jsx'
 import { Header } from './components/Header.jsx'
+import { Hero } from './components/Hero.jsx'
+import { HowItWorks } from './components/HowItWorks.jsx'
+import { Section } from './components/Section.jsx'
+import { Services } from './components/Services.jsx'
 import { useT } from './i18n/LanguageProvider.jsx'
 
 export default function App() {
@@ -14,9 +21,16 @@ export default function App() {
       </a>
       <Header />
       {/* pt-16 : laisse la place de l'en-tête fixe */}
-      <main id="contenu" className="mx-auto max-w-5xl px-4 pt-16 sm:px-6">
-        <h1 className="py-16 text-4xl leading-tight font-bold sm:text-5xl">{t.brand.tagline}</h1>
+      <main id="contenu" className="pt-16">
+        <Hero />
+        <Services />
+        <HowItWorks />
+        {/* Le questionnaire (phase 4) prendra place dans cette section. */}
+        <Section id="projet" title={t.project.title} intro={t.project.intro} />
+        <Channels />
+        <Contact />
       </main>
+      <Footer />
     </div>
   )
 }

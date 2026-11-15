@@ -46,6 +46,7 @@
   html {
     color-scheme: light;
     scroll-behavior: smooth;
+    scroll-padding-top: 4rem; /* hauteur de l'en-tête fixe */
   }
 
   html.dark {
