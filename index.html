@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo-clair.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Romeo Labs : des applications solides, pensées pour durer. Décrivez votre projet en 2 minutes."
+    />
+    <title>Romeo Labs</title>
+    <script>
+      // Applique le thème avant le premier affichage, pour éviter le flash
+      // de la mauvaise couleur. Même règle que dans src/theme/ThemeProvider.jsx.
+      (function () {
+        var theme = null;
+        try {
+          theme = localStorage.getItem('rl-theme');
+        } catch (e) {
+          // Stockage bloqué : on suit la préférence du système.
+        }
+        if (theme !== 'dark' && theme !== 'light') {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        if (theme === 'dark') document.documentElement.classList.add('dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

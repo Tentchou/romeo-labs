@@ -1,0 +1,73 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Jetons sémantiques : les composants n'utilisent que ces noms
+ * (bg-page, text-ink, bg-action…), jamais une couleur en dur.
+ * Contrastes vérifiés WCAG AA. Ne pas modifier ces valeurs.
+ */
+@theme {
+  --font-sans: "Rubik", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  --color-page: #F7F5EF;        /* fond */
+  --color-surface: #FFFFFF;     /* cartes, champs */
+  --color-ink: #14213D;         /* texte principal */
+  --color-ink-soft: #4A5568;    /* texte secondaire */
+  --color-action: #1F5BD6;      /* boutons principaux, liens */
+  --color-on-action: #FFFFFF;   /* texte sur bouton principal */
+  --color-accent: #F08A24;      /* orange : pastilles, chiffres. JAMAIS en couleur de texte sur fond clair */
+  --color-accent-text: #A9520B; /* quand un texte doit être orange */
+  --color-whatsapp: #1A7F4B;
+  --color-on-whatsapp: #FFFFFF;
+  --color-danger: #B42318;
+  --color-line: #D8D3C7;
+
+  --radius-card: 16px;
+  --radius-control: 12px;
+}
+
+.dark {
+  --color-page: #14213D;
+  --color-surface: #1F2E52;
+  --color-ink: #F7F5EF;
+  --color-ink-soft: #BFD0EA;
+  --color-action: #7FA7F5;
+  --color-on-action: #14213D;
+  --color-accent: #F08A24;
+  --color-accent-text: #F08A24;
+  --color-whatsapp: #4ADE80;
+  --color-on-whatsapp: #14213D;
+  --color-danger: #FF8A80;
+  --color-line: #2E3F66;
+}
+
+@layer base {
+  html {
+    color-scheme: light;
+    scroll-behavior: smooth;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: var(--color-page);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.125rem; /* 18 px : taille minimale du texte courant */
+    line-height: 1.6;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--color-action);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+}
