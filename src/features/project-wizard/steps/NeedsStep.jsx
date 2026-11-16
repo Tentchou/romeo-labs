@@ -33,7 +33,6 @@ export function NeedsStep({ titleId, projectType, selected, onChange, labels, hi
                 label={labels[need]}
                 hint={hints[need]}
                 selected={checked}
-                shape="square"
               />
             </label>
           )

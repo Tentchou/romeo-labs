@@ -4,7 +4,7 @@ export const NAME_FIELD_ID = 'questionnaire-nom'
 const NAME_ERROR_ID = 'questionnaire-nom-erreur'
 
 const fieldClass =
-  'mt-2 block w-full rounded-3xl border border-line bg-page px-5 text-lg text-ink transition-colors duration-150 hover:border-ink-soft focus:border-action'
+  'mt-2 block w-full rounded-xl border border-line bg-page px-4 text-lg text-ink transition-colors duration-150 hover:border-ink-soft focus:border-action'
 
 function Label({ htmlFor, children, optional }) {
   return (

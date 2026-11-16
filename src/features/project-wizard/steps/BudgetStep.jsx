@@ -70,7 +70,6 @@ export function BudgetStep({ position, unknown, steps, amountText, labels, onPos
           icon={optionIcons.needs.unsure}
           label={labels.unknown}
           selected={unknown}
-          shape="square"
         />
       </label>
     </div>

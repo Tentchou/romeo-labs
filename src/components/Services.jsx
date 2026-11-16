@@ -41,7 +41,7 @@ export function Services() {
             <Icon
               aria-hidden="true"
               strokeWidth={1.5}
-              className="mt-1 size-7 text-ink-soft transition-[color,transform] duration-200 group-hover:-translate-y-0.5 group-hover:text-accent-text motion-reduce:transform-none"
+              className="mt-1 size-7 text-ink-soft transition-colors duration-150 group-hover:text-accent-text"
             />
           </li>
         ))}

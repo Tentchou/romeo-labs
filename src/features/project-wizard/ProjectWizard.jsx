@@ -200,7 +200,7 @@ export function ProjectWizard() {
             <button
               type="button"
               onClick={wizard.restart}
-              className="-mr-2 inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-control px-2 text-base font-semibold whitespace-nowrap text-action"
+              className="-mr-2 inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-lg px-2 text-base font-semibold whitespace-nowrap text-action transition-colors duration-150 hover:bg-ink/5"
             >
               <RotateCcw aria-hidden="true" className="size-5" />
               <span>{w.restart}</span>
@@ -210,9 +210,9 @@ export function ProjectWizard() {
       )}
 
       {isQuestion && (
-        <div aria-hidden="true" className="mt-2 h-1 overflow-hidden rounded-full bg-line">
+        <div aria-hidden="true" className="mt-2 h-1 overflow-hidden rounded-sm bg-line">
           <div
-            className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out motion-reduce:transition-none"
+            className="h-full bg-accent transition-[width] duration-500 ease-out motion-reduce:transition-none"
             style={{ width: `${(stepNumber(step) / QUESTION_STEPS.length) * 100}%` }}
           />
         </div>

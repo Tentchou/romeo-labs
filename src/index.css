@@ -26,7 +26,6 @@
 
   --radius-card: 16px;
   --radius-control: 12px;
-  --radius-pill: 2rem; /* cartes de réponse du questionnaire */
 
   /* Courbe commune des animations : départ vif, arrivée douce, sans rebond. */
   --ease-out-soft: cubic-bezier(0.2, 0.7, 0.2, 1);
@@ -51,7 +50,7 @@
   html {
     color-scheme: light;
     scroll-behavior: smooth;
-    scroll-padding-top: 4rem; /* hauteur de l'en-tête fixe */
+    scroll-padding-top: 4.5rem; /* hauteur de l'en-tête fixe */
   }
 
   html.dark {
@@ -123,6 +122,35 @@ main {
   transform: none;
 }
 
+/* La scène 3D de l'accueil (components/LogoStage.jsx) :
+   rotation lente au repos, inclinaison vers la souris au survol. */
+.logo-stage {
+  perspective: 900px;
+}
+
+.logo-stage-idle {
+  transform-style: preserve-3d;
+  animation: logo-idle 9s ease-in-out infinite alternate;
+}
+
+.logo-stage:hover .logo-stage-idle {
+  animation-play-state: paused;
+}
+
+.logo-stage-tilt {
+  transform: rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
+  transition: transform 150ms ease-out;
+}
+
+@keyframes logo-idle {
+  from {
+    transform: rotateY(-24deg) rotateX(6deg);
+  }
+  to {
+    transform: rotateY(24deg) rotateX(-6deg);
+  }
+}
+
 /* La coche d'une réponse choisie. */
 @keyframes pop {
   from {
@@ -159,8 +187,14 @@ main {
 @media (prefers-reduced-motion: reduce) {
   .rise,
   .step-in,
-  .pop {
+  .pop,
+  .logo-stage-idle {
     animation: none;
+  }
+
+  .logo-stage-tilt {
+    transform: none;
+    transition: none;
   }
 
   .reveal {

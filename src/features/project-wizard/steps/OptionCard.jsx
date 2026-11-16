@@ -1,15 +1,14 @@
 import { Check } from 'lucide-react'
 
-// L'apparence d'une réponse : une pilule à bordure fine, icône + texte, au moins 64 px de haut.
-// La carte choisie change de bordure ET reçoit une coche : jamais la couleur seule.
+// L'apparence d'une réponse : bordure fine, coins de 12 px, icône + texte,
+// au moins 64 px de haut. Toutes les réponses ont la même forme, sur une ligne ou sur trois.
+// Au repos le fond est transparent ; au survol, un fond très léger, en 150 ms.
+// La réponse choisie change de bordure et de fond ET reçoit une coche : jamais la couleur seule.
 export function optionCardClass(selected) {
   return [
-    'rise flex min-h-16 w-full cursor-pointer items-center gap-4 rounded-pill border py-3 pr-4 pl-6 text-left',
-    // Survol et appui : précis et rapides, sans rebond.
-    'transition-[border-color,background-color,transform] duration-150 ease-out',
-    'hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99]',
-    'motion-reduce:transform-none motion-reduce:transition-none',
-    selected ? 'border-action bg-action/10' : 'border-line bg-page hover:border-ink-soft',
+    'rise flex min-h-16 w-full cursor-pointer items-center gap-4 rounded-xl border px-4 py-3 text-left',
+    'transition-colors duration-150 ease-out motion-reduce:transition-none',
+    selected ? 'border-action bg-action/10' : 'border-line bg-transparent hover:bg-ink/5',
   ].join(' ')
 }
 
@@ -18,8 +17,8 @@ export function optionCardDelay(index) {
   return { animationDelay: `${index * 45}ms` }
 }
 
-// Le contenu d'une carte. `shape` : "round" pour un choix unique, "square" pour une case à cocher.
-export function OptionCardBody({ icon: Icon, label, hint, selected, shape = 'round' }) {
+// Le contenu d'une réponse : icône, texte, précision facultative, et la case de droite.
+export function OptionCardBody({ icon: Icon, label, hint, selected }) {
   return (
     <>
       <Icon aria-hidden="true" strokeWidth={1.5} className="size-7 shrink-0 text-accent-text" />
@@ -30,9 +29,8 @@ export function OptionCardBody({ icon: Icon, label, hint, selected, shape = 'rou
       <span
         aria-hidden="true"
         className={[
-          'flex size-7 shrink-0 items-center justify-center border transition-colors duration-150',
-          shape === 'round' ? 'rounded-full' : 'rounded-md',
-          selected ? 'border-action bg-action text-on-action' : 'border-ink-soft bg-surface',
+          'flex size-7 shrink-0 items-center justify-center rounded-md border transition-colors duration-150',
+          selected ? 'border-action bg-action text-on-action' : 'border-ink-soft bg-transparent',
         ].join(' ')}
       >
         {selected && <Check className="pop size-4" strokeWidth={3} />}
