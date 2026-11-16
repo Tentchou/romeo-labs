@@ -4,7 +4,7 @@ import { useT } from '../i18n/LanguageProvider.jsx'
 const LANGS = ['en', 'fr']
 
 // Le sélecteur de langue : « EN | FR » côte à côte.
-// La langue active est en gras, de la couleur principale ; l'autre est estompée.
+// La langue active est en gras, de la couleur principale ; l'autre est estompée (65 % : assez pour rester lisible).
 // Un clic change la langue tout de suite, sans animation.
 export function LangSwitch() {
   const { t, lang, toggleLang } = useT()
@@ -19,7 +19,7 @@ export function LangSwitch() {
       {LANGS.map((code, index) => (
         <span key={code} className="contents">
           {index > 0 && <span aria-hidden="true" className="h-5 w-px bg-ink/30" />}
-          <span className={code === lang ? 'font-bold text-action' : 'text-ink opacity-50'}>
+          <span className={code === lang ? 'font-bold text-action' : 'text-ink opacity-65'}>
             {code.toUpperCase()}
           </span>
         </span>
