@@ -1,17 +1,23 @@
-import { BriefcaseBusiness, CodeXml, Music2, SquarePlay, ThumbsUp } from 'lucide-react'
 import { config } from '../config.js'
 import { useT } from '../i18n/LanguageProvider.jsx'
 import { isFilled } from '../links.js'
+import {
+  FacebookIcon,
+  GitHubIcon,
+  LinkedInIcon,
+  TikTokIcon,
+  YouTubeIcon,
+} from './BrandIcons.jsx'
 import { Button } from './Button.jsx'
 import { Section } from './Section.jsx'
 
 // `key` désigne à la fois le lien dans config.links et le nom dans les dictionnaires.
 const channels = [
-  { key: 'youtube', icon: SquarePlay },
-  { key: 'tiktok', icon: Music2 },
-  { key: 'facebook', icon: ThumbsUp },
-  { key: 'linkedin', icon: BriefcaseBusiness },
-  { key: 'github', icon: CodeXml },
+  { key: 'youtube', icon: YouTubeIcon },
+  { key: 'tiktok', icon: TikTokIcon },
+  { key: 'facebook', icon: FacebookIcon },
+  { key: 'linkedin', icon: LinkedInIcon },
+  { key: 'github', icon: GitHubIcon },
 ]
 
 export function Channels() {
