@@ -14,7 +14,7 @@ export function LangSwitch() {
       type="button"
       onClick={toggleLang}
       aria-label={t.header.langButtonLabel}
-      className="inline-flex min-h-12 cursor-pointer items-center gap-3 rounded-lg px-3 text-lg transition-colors duration-150 hover:bg-ink/5"
+      className="inline-flex min-h-12 cursor-pointer items-center gap-3 rounded-full px-4 text-lg transition-colors duration-150 hover:bg-ink/5"
     >
       {LANGS.map((code, index) => (
         <span key={code} className="contents">

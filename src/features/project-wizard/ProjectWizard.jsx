@@ -189,7 +189,7 @@ export function ProjectWizard() {
   }
 
   return (
-    <div className="rounded-card border border-line bg-surface p-4 sm:p-8">
+    <div className="rounded-3xl border border-line bg-surface p-4 sm:p-8">
       {step !== THANKS && (
         <div className="flex min-h-12 items-center justify-between gap-4">
           <p aria-live="polite" className="font-mono text-base font-medium whitespace-nowrap text-ink-soft">
@@ -200,7 +200,7 @@ export function ProjectWizard() {
             <button
               type="button"
               onClick={wizard.restart}
-              className="-mr-2 inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-lg px-2 text-base font-semibold whitespace-nowrap text-action transition-colors duration-150 hover:bg-ink/5"
+              className="-mr-2 inline-flex min-h-12 cursor-pointer items-center gap-2 rounded-full px-3 text-base font-semibold whitespace-nowrap text-action transition-colors duration-150 hover:bg-ink/5"
             >
               <RotateCcw aria-hidden="true" className="size-5" />
               <span>{w.restart}</span>
@@ -210,9 +210,9 @@ export function ProjectWizard() {
       )}
 
       {isQuestion && (
-        <div aria-hidden="true" className="mt-2 h-1 overflow-hidden rounded-sm bg-line">
+        <div aria-hidden="true" className="mt-2 h-1 overflow-hidden rounded-full bg-line">
           <div
-            className="h-full bg-accent transition-[width] duration-500 ease-out motion-reduce:transition-none"
+            className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out motion-reduce:transition-none"
             style={{ width: `${(stepNumber(step) / QUESTION_STEPS.length) * 100}%` }}
           />
         </div>

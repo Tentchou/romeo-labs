@@ -4,7 +4,7 @@ export const NAME_FIELD_ID = 'questionnaire-nom'
 const NAME_ERROR_ID = 'questionnaire-nom-erreur'
 
 const fieldClass =
-  'mt-2 block w-full rounded-xl border border-line bg-page px-4 text-lg text-ink transition-colors duration-150 hover:border-ink-soft focus:border-action'
+  'mt-2 block w-full rounded-full border border-line bg-page px-6 text-lg text-ink transition-colors duration-150 hover:border-ink-soft focus:border-action'
 
 function Label({ htmlFor, children, optional }) {
   return (
@@ -62,7 +62,7 @@ export function ContactStep({ answers, onChange, labels, error }) {
           maxLength={1000}
           value={answers.message}
           onChange={(event) => onChange('message', event.target.value)}
-          className={`${fieldClass} py-3`}
+          className={`${fieldClass} rounded-3xl! py-3`}
         />
       </div>
     </div>

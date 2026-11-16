@@ -34,7 +34,7 @@ export function LogoStage() {
       aria-hidden="true"
       onPointerMove={handleMove}
       onPointerLeave={handleLeave}
-      className="logo-stage rise hidden size-80 shrink-0 items-center justify-center rounded-card border border-line lg:flex"
+      className="logo-stage rise hidden size-80 shrink-0 items-center justify-center rounded-3xl border border-line lg:flex"
       style={{ animationDelay: '320ms' }}
     >
       <div className="logo-stage-idle">

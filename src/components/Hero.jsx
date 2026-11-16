@@ -34,12 +34,13 @@ export function Hero() {
             className="rise mt-10 flex flex-col gap-4 sm:flex-row"
             style={{ animationDelay: '240ms' }}
           >
-            <Button icon={Rocket} href="#projet">
+            <Button icon={Rocket} outline href="#projet">
               {t.hero.start}
             </Button>
             <Button
               icon={MessageCircle}
               variant="whatsapp"
+              outline
               href={whatsappLink(config.whatsappNumber)}
               external
             >

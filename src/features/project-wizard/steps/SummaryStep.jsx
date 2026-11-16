@@ -18,7 +18,7 @@ export function SummaryStep({ rows, labels, editLabel, editLabelFull, whatsappHr
               type="button"
               onClick={() => onEdit(row.step)}
               aria-label={fill(editLabelFull, { label: row.label })}
-              className="inline-flex min-h-12 shrink-0 cursor-pointer items-center gap-2 rounded-lg px-3 text-base font-semibold text-action transition-colors duration-150 hover:bg-ink/5"
+              className="inline-flex min-h-12 shrink-0 cursor-pointer items-center gap-2 rounded-full px-4 text-base font-semibold text-action transition-colors duration-150 hover:bg-ink/5"
             >
               <Pencil aria-hidden="true" className="size-5" />
               <span>{editLabel}</span>

@@ -16,7 +16,7 @@ export default function App() {
     <div id="top">
       <a
         href="#contenu"
-        className="sr-only rounded-lg bg-action px-4 py-3 font-semibold text-on-action focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-20"
+        className="sr-only rounded-full bg-action px-4 py-3 font-semibold text-on-action focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-20"
       >
         {t.header.skipToContent}
       </a>
