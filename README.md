@@ -67,46 +67,48 @@ La logique est séparée de l'affichage : les fichiers `budget.js`, `wizardOptio
 
 Le navigateur garde trois réglages en mémoire : `rl-lang` (langue), `rl-theme` (thème) et `rl-wizard` (progression du questionnaire).
 
-## Mettre en ligne sur Cloudflare Pages
+## Mettre en ligne sur GitHub Pages
 
-Le site est hébergé sur [Cloudflare Pages](https://pages.cloudflare.com), qui suit le dépôt GitHub : à chaque envoi sur la branche `main`, Cloudflare reconstruit le site et le publie.
+Le fichier [.github/workflows/deploy.yml](.github/workflows/deploy.yml) fait tout : à chaque envoi sur la branche `main`, il lance les tests, construit le site et le publie.
 
-À faire une seule fois, dans le tableau de bord Cloudflare :
+À faire une seule fois :
 
-1. Ouvrez **Workers & Pages**, puis **Create application > Pages > Connect to Git**.
-2. Choisissez **GitHub**, autorisez Cloudflare, puis sélectionnez le dépôt.
-3. Dans **Set up builds and deployments**, réglez :
+1. Créez un dépôt sur GitHub, puis envoyez-y le code :
 
-   | Champ | Valeur |
-   |---|---|
-   | Production branch | `main` |
-   | Framework preset | `React (Vite)` (ou `None`) |
-   | Build command | `npm run build` |
-   | Build output directory | `dist` |
+   ```bash
+   git remote add origin https://github.com/VOTRE-COMPTE/NOM-DU-DEPOT.git
+   git push -u origin main
+   ```
 
-4. Cliquez sur **Save and Deploy**.
+2. Sur GitHub, ouvrez **Settings > Pages**, et choisissez **Source : GitHub Actions**.
+3. Ouvrez l'onglet **Actions** : la mise en ligne démarre. À la fin, l'adresse du site s'affiche.
 
-Le site sera à l'adresse `https://NOM-DU-PROJET.pages.dev`.
-
-La version de Node.js utilisée par Cloudflare est celle du fichier [.node-version](.node-version).
-
-Le fichier [.github/workflows/checks.yml](.github/workflows/checks.yml) ne publie rien : il relance le lint, les tests et la construction sur GitHub à chaque envoi.
+Le site sera à l'adresse `https://VOTRE-COMPTE.github.io/NOM-DU-DEPOT/`.
 
 ### L'option `base`
 
-Sur Cloudflare Pages, le site est à la racine de son adresse : l'option `base` de [vite.config.js](vite.config.js) garde sa valeur `/` et il n'y a rien à régler.
+Sur GitHub Pages, le site vit dans un sous-dossier qui porte le nom du dépôt. Vite doit le savoir : c'est l'option `base` de [vite.config.js](vite.config.js).
 
-Elle ne sert que si le site doit un jour vivre dans un sous-dossier (par exemple sur GitHub Pages, à `/nom-du-depot/`). Il suffit alors de donner ce chemin dans la variable `BASE_PATH` au moment de construire.
+Vous n'avez rien à régler : le workflow lit le nom du dépôt et le transmet dans la variable `BASE_PATH`. En local, `base` vaut `/`.
+
+Pour essayer chez vous la version exacte qui sera en ligne (PowerShell) :
+
+```powershell
+$env:BASE_PATH = "/NOM-DU-DEPOT/"; npm run build; npm run preview
+```
 
 ### Brancher un nom de domaine
 
-1. Dans le tableau de bord Cloudflare, ouvrez le projet, puis l'onglet **Custom domains**.
-2. Cliquez sur **Set up a custom domain** et écrivez votre nom de domaine.
-3. Suivez les instructions affichées :
-   - si le nom de domaine est déjà géré par Cloudflare, l'enregistrement DNS est créé tout seul ;
-   - sinon, ajoutez chez votre vendeur un enregistrement `CNAME` vers `NOM-DU-PROJET.pages.dev` (pour un sous-domaine comme `www`). Pour le domaine nu (`exemple.com`), Cloudflare demande de lui confier la gestion du nom de domaine.
+1. Chez le vendeur de votre nom de domaine, ajoutez un enregistrement DNS :
+   - pour un sous-domaine (`www.exemple.com`) : un enregistrement `CNAME` vers `VOTRE-COMPTE.github.io` ;
+   - pour le domaine nu (`exemple.com`) : quatre enregistrements `A` vers `185.199.108.153`, `185.199.109.153`, `185.199.110.153` et `185.199.111.153`.
+2. Sur GitHub, dans **Settings > Pages > Custom domain**, écrivez votre nom de domaine et enregistrez.
+3. Quand la vérification est terminée, cochez **Enforce HTTPS**.
+4. Relancez la mise en ligne (onglet **Actions > Mise en ligne > Run workflow**).
 
-Le HTTPS est activé automatiquement. La marche à suivre officielle est dans la [documentation de Cloudflare Pages](https://developers.cloudflare.com/pages/configuration/custom-domains/).
+Avec un nom de domaine, le site n'est plus dans un sous-dossier. Le workflow s'en aperçoit et remet `base` à `/` tout seul.
+
+La propagation DNS peut prendre jusqu'à 24 heures. La marche à suivre officielle est dans la [documentation de GitHub Pages](https://docs.github.com/fr/pages/configuring-a-custom-domain-for-your-github-pages-site).
 
 ## Qualité
 
