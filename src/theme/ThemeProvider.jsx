@@ -1,4 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import { flushSync } from 'react-dom'
 import { readStored, writeStored } from '../storage.js'
 
 const STORAGE_KEY = 'rl-theme'
@@ -20,13 +21,41 @@ export function ThemeProvider({ children }) {
     document.documentElement.classList.toggle('dark', theme === 'dark')
   }, [theme])
 
-  const toggleTheme = useCallback(() => {
-    setTheme((current) => {
-      const next = current === 'dark' ? 'light' : 'dark'
+  // Change de thème. `origin` ({ x, y } dans la fenêtre) est le point d'où la
+  // nouvelle couleur s'étend en cercle ; l'animation est dans index.css (theme-reveal).
+  const toggleTheme = useCallback(
+    (origin) => {
+      const next = theme === 'dark' ? 'light' : 'dark'
       writeStored(STORAGE_KEY, next)
-      return next
-    })
-  }, [])
+
+      const root = document.documentElement
+      const apply = () => {
+        root.classList.toggle('dark', next === 'dark')
+        flushSync(() => setTheme(next))
+      }
+
+      // Navigateur sans cette animation, ou appareil qui demande moins de mouvement :
+      // le thème change d'un coup.
+      const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+      if (reducedMotion || !document.startViewTransition) {
+        apply()
+        return
+      }
+
+      const x = origin?.x ?? window.innerWidth / 2
+      const y = origin?.y ?? 0
+      // Le rayon qui couvre tout l'écran depuis ce point.
+      const radius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y),
+      )
+      root.style.setProperty('--theme-x', `${x}px`)
+      root.style.setProperty('--theme-y', `${y}px`)
+      root.style.setProperty('--theme-r', `${radius}px`)
+      document.startViewTransition(apply)
+    },
+    [theme],
+  )
 
   const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme])
 

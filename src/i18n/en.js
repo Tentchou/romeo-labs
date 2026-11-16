@@ -11,16 +11,14 @@ export const en = {
   header: {
     skipToContent: "Skip to content",
     homeLabel: "Romeo Labs, back to the top of the page",
-    langButton: "FR",
     langButtonLabel: "Show the site in French",
-    themeToDark: "Dark",
     themeToDarkLabel: "Switch to the dark theme",
-    themeToLight: "Light",
     themeToLightLabel: "Switch to the light theme",
   },
   hero: {
+    eyebrow: "Fullstack developer · Cybersecurity & AppSec",
     subtitle:
-      "I'm Romeo, a .NET & React developer. Describe your project in 2 minutes and I'll reply on WhatsApp.",
+      "I'm Romeo. I build your web and mobile apps, and I keep them secure. Describe your project in 2 minutes and I'll reply on WhatsApp.",
     start: "Start my project",
     whatsapp: "Contact me on WhatsApp",
   },
@@ -37,6 +35,10 @@ export const en = {
     management: {
       title: "Custom management software",
       text: "A tool made for you: stock, invoices, customers, staff.",
+    },
+    security: {
+      title: "Application security",
+      text: "I look for the weak points in your web and mobile apps, and I fix them before an attacker finds them.",
     },
     training: {
       title: "Training and support",

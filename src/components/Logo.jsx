@@ -15,7 +15,7 @@ export function Logo() {
         height="36"
         className="hidden size-9 dark:block"
       />
-      <span className="text-lg font-bold whitespace-nowrap text-ink">{config.brand}</span>
+      <span className="font-display text-xl font-bold tracking-tight whitespace-nowrap text-ink">{config.brand}</span>
     </span>
   )
 }

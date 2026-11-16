@@ -5,7 +5,7 @@ export function Footer() {
   const { t } = useT()
 
   return (
-    <footer className="border-t border-line py-12">
+    <footer className="border-t border-line py-12 max-sm:pb-28">
       <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 sm:px-6">
         <Logo />
         <p className="text-ink-soft">{t.brand.tagline}</p>

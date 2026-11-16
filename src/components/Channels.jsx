@@ -23,7 +23,7 @@ export function Channels() {
 
   return (
     <Section id="chaines" title={t.channels.title} intro={t.channels.intro}>
-      <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+      <ul className="grid gap-3 sm:grid-cols-2">
         {available.map(({ key, icon }) => (
           <li key={key}>
             <Button icon={icon} variant="secondary" href={config.links[key]} external fullWidth>

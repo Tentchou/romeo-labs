@@ -189,7 +189,7 @@ export function ProjectWizard() {
   }
 
   return (
-    <div className="max-w-3xl rounded-card border border-line bg-surface p-4 sm:p-8">
+    <div className="rounded-card border border-line bg-surface p-4 sm:p-8">
       {step !== THANKS && (
         <div className="flex min-h-12 items-center justify-between gap-4">
           <p aria-live="polite" className="font-mono text-base font-medium whitespace-nowrap text-ink-soft">
@@ -210,9 +210,9 @@ export function ProjectWizard() {
       )}
 
       {isQuestion && (
-        <div aria-hidden="true" className="mt-2 h-2 overflow-hidden rounded-full bg-line">
+        <div aria-hidden="true" className="mt-2 h-1 overflow-hidden rounded-full bg-line">
           <div
-            className="h-full rounded-full bg-accent transition-[width] duration-300 motion-reduce:transition-none"
+            className="h-full rounded-full bg-accent transition-[width] duration-500 ease-out motion-reduce:transition-none"
             style={{ width: `${(stepNumber(step) / QUESTION_STEPS.length) * 100}%` }}
           />
         </div>
@@ -224,7 +224,7 @@ export function ProjectWizard() {
           id={TITLE_ID}
           ref={titleRef}
           tabIndex={-1}
-          className="flex items-center gap-3 text-2xl leading-tight font-bold text-balance sm:text-3xl"
+          className="flex items-center gap-3 font-display text-2xl leading-tight font-bold tracking-tight text-balance sm:text-3xl"
         >
           {step === THANKS && (
             <CircleCheck aria-hidden="true" className="size-8 shrink-0 text-whatsapp" />

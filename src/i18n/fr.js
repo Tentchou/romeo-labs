@@ -11,16 +11,14 @@ export const fr = {
   header: {
     skipToContent: "Aller au contenu",
     homeLabel: "Romeo Labs, retour en haut de la page",
-    langButton: "EN",
     langButtonLabel: "Afficher le site en anglais",
-    themeToDark: "Sombre",
     themeToDarkLabel: "Passer au thème sombre",
-    themeToLight: "Clair",
     themeToLightLabel: "Passer au thème clair",
   },
   hero: {
+    eyebrow: "Développeur Fullstack · Cybersécurité & AppSec",
     subtitle:
-      "Je suis Romeo, développeur .NET & React. Décrivez votre projet en 2 minutes, je vous réponds sur WhatsApp.",
+      "Je suis Romeo. Je crée vos applications web et mobiles, et je les protège. Décrivez votre projet en 2 minutes, je vous réponds sur WhatsApp.",
     start: "Démarrer mon projet",
     whatsapp: "Me contacter sur WhatsApp",
   },
@@ -37,6 +35,10 @@ export const fr = {
     management: {
       title: "Logiciels de gestion sur mesure",
       text: "Un outil fait pour vous : stock, factures, clients, employés.",
+    },
+    security: {
+      title: "Sécurité des applications",
+      text: "Je cherche les failles de vos applications web et mobiles, et je les corrige avant qu'un pirate ne les trouve.",
     },
     training: {
       title: "Formation et accompagnement",

@@ -1,6 +1,6 @@
 import { needsFor, toggleNeed } from '../wizardOptions.js'
 import { ErrorMessage } from './ErrorMessage.jsx'
-import { OptionCardBody, optionCardClass } from './OptionCard.jsx'
+import { OptionCardBody, optionCardClass, optionCardDelay } from './OptionCard.jsx'
 import { optionIcons } from './optionIcons.js'
 
 const ERROR_ID = 'questionnaire-besoins-erreur'
@@ -14,11 +14,12 @@ export function NeedsStep({ titleId, projectType, selected, onChange, labels, hi
       aria-describedby={error ? ERROR_ID : undefined}
     >
       <div className="grid gap-3 sm:grid-cols-2">
-        {needsFor(projectType).map((need) => {
+        {needsFor(projectType).map((need, index) => {
           const checked = selected.includes(need)
           return (
             <label
               key={need}
+              style={optionCardDelay(index)}
               className={`${optionCardClass(checked)} has-focus-visible:outline-3 has-focus-visible:outline-offset-2 has-focus-visible:outline-action`}
             >
               <input
