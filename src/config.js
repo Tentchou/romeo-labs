@@ -2,14 +2,14 @@
 // Remplacez chaque valeur « [À COMPLÉTER] » par la vôtre.
 export const config = {
   brand: "Romeo Labs",
-  whatsappNumber: "237XXXXXXXXX", // [À COMPLÉTER] chiffres seulement, avec l'indicatif, sans + ni espaces
-  email: "[À COMPLÉTER]",
+  whatsappNumber: "237676182454", // chiffres seulement, avec l'indicatif, sans + ni espaces
+  email: "romeo.labs@proton.me",
   links: {
-    youtube: "[À COMPLÉTER]",
-    tiktok: "[À COMPLÉTER]",
+    youtube: "https://youtube.com/@romeolabs",
+    tiktok: "https://www.tiktok.com/@dev.arch",
     facebook: "[À COMPLÉTER]",
-    linkedin: "[À COMPLÉTER]",
-    github: "[À COMPLÉTER]",
+    linkedin: "https://www.linkedin.com/in/romeo-tentchou-54219b295/",
+    github: "https://github.com/Tentchou",
   },
   budget: {
     currency: "FCFA",
