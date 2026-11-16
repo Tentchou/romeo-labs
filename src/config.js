@@ -7,7 +7,7 @@ export const config = {
   links: {
     youtube: "https://youtube.com/@romeolabs",
     tiktok: "https://www.tiktok.com/@dev.arch",
-    facebook: "[À COMPLÉTER]",
+    facebook: "https://www.facebook.com/profile.php?id=61582575607230",
     linkedin: "https://www.linkedin.com/in/romeo-tentchou-54219b295/",
     github: "https://github.com/Tentchou",
   },
